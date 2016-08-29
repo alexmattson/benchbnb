@@ -1,16 +1,17 @@
 import { connect } from 'react-redux';
-import Search from './search';
-import { requestBenches } from '../actions/bench_actions';
+import Greeting from './greeting';
+import { logout } from '../../actions/session_actions';
+
 
 const mapStateToProps = state => ({
-  benches: state.benches
+  session: state.session
 });
 
 const mapDispatchToProps = dispatch => ({
-  requestBenches: () => dispatch(requestBenches())
+  logout: () => dispatch(logout())
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Search);
+)(Greeting);

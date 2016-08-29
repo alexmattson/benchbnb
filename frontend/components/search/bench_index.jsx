@@ -2,9 +2,6 @@ import React from 'react';
 import { values } from 'lodash';
 
 class BenchIndex extends React.Component{
-  componentDidMount(){
-    this.props.requestBenches();
-  }
 
   render(){
     let benches = values(this.props.benches).map(bench => (

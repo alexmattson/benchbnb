@@ -1,8 +1,16 @@
-export const fetchBenches = function(success){
+export const fetchBenches = (filters, success) => {
   $.ajax({
     method: 'GET',
-    url: '/api/benches',
-    success,
-    error: () => console.log('error')
+    url: 'api/benches',
+    data: filters,
+    success
+  });
+};
+
+export const createBench = (bench, success) => {
+  $.ajax({
+    method: 'POST',
+    url: 'api/benches',
+    data: bench
   });
 };

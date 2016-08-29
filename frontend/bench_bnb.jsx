@@ -2,22 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import { Provider } from 'react-redux';
-import SearchContainer from './components/search_container';
+import Root from './components/root';
 
 //test
 import {requestBenches} from './actions/bench_actions';
 window.requestBenches = requestBenches;
 //////////
 
-const Root = (store) => (
-  <Provider store={store}>
-    <SearchContainer />
-  </Provider>
-);
-
 
 document.addEventListener('DOMContentLoaded', () => {
-  const store = window.Store = configureStore();
+  let preloadedState = {};
+  if (window.currentUser) {
+    preloadedState = {session: {currentUser: window.currentUser}};
+  }
+
+  const store = window.Store = configureStore(preloadedState);
   const root = document.getElementById('root');
-  ReactDOM.render(Root(store), root);
+  ReactDOM.render(<Root store={store}/>, root);
 });
